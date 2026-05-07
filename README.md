@@ -1,73 +1,80 @@
 # Latens — World Model Lab
 
-> A research scaffold for building, inspecting, and replaying **predictive latent world models** in the browser.
-> This repository is intentionally **source-free**: it holds the project's narrative, design assets, and example specs.
-> Implementation lives in downstream forks (e.g. the Latens frontend inside `SN-EBM/muse-web/src/latens/`).
+> **The AI scientist for predictive world models.**
+> Latens turns a research question into a reproducible experiment.
+> Architect a JEPA on a live canvas, train it on your data, probe the latent space, and co-write the paper — end to end, in one workspace.
 
-![banner](assets/banner.png)
+This repository is the **public project page**: README, design assets, and example specs.
+It is intentionally **source-free** — the implementation lives in a separate repo and evolves independently of this introduction.
 
----
-
-## What is Latens?
-
-Latens is a small research-grade workbench for **world models**: systems that learn a compressed latent representation of a stream (video, sensor traces, agent rollouts) and predict its future. The lab centers on three things:
-
-1. **Encoders** that map raw observations into a low-dimensional latent space.
-2. **Predictors** that roll the latent forward in time without ever decoding back to pixels.
-3. **A browser UI** for stepping through, branching, and comparing rollouts side-by-side.
-
-The repo you're looking at is the *project page* — design notes, diagrams, and example session manifests. It is the public face of the work; the implementation is intentionally not vendored here.
+![hero](assets/hero.png)
 
 ---
 
-## Architecture (sketch)
+## The research loop
 
-![architecture](assets/architecture.png)
+Seven stages, one continuous surface. Move forward, branch back, and every artifact — code, checkpoint, figure, citation — remains live and linkable.
 
-| Block          | Role                                                                |
-| -------------- | ------------------------------------------------------------------- |
-| Encoder        | Observation → latent vector `z_t`                                   |
-| Predictor      | `z_t → ẑ_{t+1}` (autoregressive rollout, no pixel reconstruction)   |
-| Decoder        | Optional — only for visualization / debugging                       |
-| Latent Memory  | Versioned store of latents, rollouts, and forks                     |
-| Browser UI     | Latens app — sessions, latent flow, logs                            |
-
-See [`examples/architecture.md`](examples/architecture.md) for the longer-form description and the open questions.
+| # | Stage         | What you do                                       |
+| - | ------------- | ------------------------------------------------- |
+| 1 | Data          | Source · curate · pre-process                     |
+| 2 | Architecture  | Encoder · predictor · action                      |
+| 3 | Training      | Schedule · distribute · log                       |
+| 4 | Probing       | Linear · k-NN · invariance                        |
+| 5 | Fine-tune     | Head · adapter · schedule                         |
+| 6 | Evaluation    | Benchmarks · ablations · CIs                      |
+| 7 | Publish       | Draft · cite · submit                             |
 
 ---
 
-## Screens
+## The Worktop
 
-![screenshot](assets/screenshot.png)
+Four surfaces, one graph. The canvas builds your architecture; the chat is your collaborator; the editor is your manuscript.
 
-A placeholder for the Latens UI: left rail is sessions, top-right is the latent flow chart, bottom-right is the streaming log. Real screenshots will replace this image once the UI ships in the downstream repo.
+![worktop](assets/worktop.png)
+
+- **Architecture canvas** — wire the JEPA like a circuit, not a config file. Drag a data source, attach encoders, pick an action space, choose your loss. Every node carries a live tensor shape, a parameter count, and a replayable checkpoint. Branch the graph to fork an experiment; merge to ablate.
+- **Training runs** — reproducible, interruptible, forkable. Launch on your cluster or ours. Every run captures the full graph, seed, and compute envelope — so a paper reviewer can re-run the exact experiment from a single link.
+- **Probing** — ask the latent what it learned. Linear probes, k-NN, UMAP, invariance tests — each is a node you can attach mid-run. Results stream into the chat, citeable from the manuscript.
+- **Downstream** — fine-tune with one edge. Hook any checkpoint into a classification, segmentation, or forecasting head. Transfer benchmarks auto-tabulate.
+- **Evaluation** — benchmarks that know they're benchmarks. ImageNet, SSv2, Ego4D, custom — every eval writes into a LaTeX-ready results table with confidence intervals.
+- **Manuscript** — the paper writes itself, almost. Latens drafts method, results, and limitations from the graph. You keep the voice; it keeps the citations honest.
+
+---
+
+## Why Latens
+
+![why-latens](assets/why-latens.png)
+
+Most ML tooling treats the model as a script to run. Latens treats it as **a scientific instrument** — calibrated, logged, and peer-reviewable from the first training step.
+
+> *Start with a question. End with a paper.*
 
 ---
 
 ## Examples
 
-| File                                             | What it shows                                          |
-| ------------------------------------------------ | ------------------------------------------------------ |
-| [`examples/session.md`](examples/session.md)     | Shape of a "world session" manifest                    |
-| [`examples/rollout.md`](examples/rollout.md)     | A latent rollout trace and how to interpret it         |
-| [`examples/architecture.md`](examples/architecture.md) | Long-form description of the components above   |
+| File                                                   | What it shows                                          |
+| ------------------------------------------------------ | ------------------------------------------------------ |
+| [`examples/session.md`](examples/session.md)           | Shape of a "world session" manifest                    |
+| [`examples/rollout.md`](examples/rollout.md)           | A latent rollout trace and how to interpret it         |
+| [`examples/architecture.md`](examples/architecture.md) | Long-form description of the JEPA worktop components   |
 
 ---
 
 ## Status
 
-This is a **public scaffold**. There is no executable code in this repo on purpose — the goal is to host the project's introduction, diagrams, and example specs in a stable, link-friendly place while implementation evolves elsewhere.
+This is a **public scaffold** — a stable, link-friendly home for the project's introduction, design assets, and example specs. The implementation evolves in a separate repository and is not vendored here.
 
-If you arrived here looking for code: check the issues tab for pointers to the active implementation repo.
+Early access is open for world-model researchers; accepted labs receive free compute credits.
 
 ---
 
 ## Roadmap (rough)
 
-- [ ] Replace placeholder banner with the final hero artwork
-- [ ] Replace `architecture.png` with a vector diagram exported from the design source
-- [ ] Add real screenshots once the Latens UI ships
-- [ ] Publish the first example session manifest from a real run
+- [ ] First example session manifest from a real Worktop run
+- [ ] "Two rollouts side-by-side" comparison view
+- [ ] Public checkpoints for the v2.1 JEPA Worktop release
 
 ---
 
